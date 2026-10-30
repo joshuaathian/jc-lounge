@@ -11,35 +11,37 @@ export type GalleryImage = {
   wide?: boolean; // full-width cinematic strip
 };
 
+const image = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
+
 export const galleryImages: GalleryImage[] = [
   {
-    src: "/images/interior.webp",
+    src: image("interior.webp"),
     alt: "A wall of glowing screens above a backlit bar inside a dark sports lounge",
     caption: "Match night, from the bar",
     anchor: true,
   },
   {
-    src: "/images/gallery-crowd.webp",
+    src: image("gallery-crowd.webp"),
     alt: "Friends raising glasses in silhouette against a bright match screen",
     caption: "The final whistle",
   },
   {
-    src: "/images/gallery-choma.webp",
+    src: image("gallery-choma.webp"),
     alt: "A platter of charcoal-grilled choma and ribs on dark slate",
     caption: "Choma, off the coals",
   },
   {
-    src: "/images/gallery-cocktail.webp",
+    src: image("gallery-cocktail.webp"),
     alt: "An old fashioned cocktail with a large ice cube on a dark wooden bar",
     caption: "Poured slow",
   },
   {
-    src: "/images/gallery-pizza.webp",
+    src: image("gallery-pizza.webp"),
     alt: "A wood-fired margherita pizza on a dark wooden board",
     caption: "From the oven",
   },
   {
-    src: "/images/gallery-whiskey.webp",
+    src: image("gallery-whiskey.webp"),
     alt: "Whiskey being poured into a crystal glass under a warm spotlight",
     caption: "Last pour",
     wide: true,

@@ -12,7 +12,7 @@ export default function About() {
           className="hairline-frame overflow-hidden rounded-lg"
         >
           <img
-            src="/images/about.webp"
+            src={`${import.meta.env.BASE_URL}images/about.webp`}
             alt="A bartender pouring a drink behind the dark wooden bar at JC Lounge"
             className="aspect-[2/3] w-full object-cover"
             loading="lazy"

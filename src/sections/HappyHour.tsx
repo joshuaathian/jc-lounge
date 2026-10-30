@@ -6,7 +6,7 @@ export default function HappyHour() {
   return (
     <section ref={ref} aria-label="Offers" className="relative overflow-hidden">
       <img
-        src="/images/happyhour.webp"
+        src={`${import.meta.env.BASE_URL}images/happyhour.webp`}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"

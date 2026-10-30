@@ -7,6 +7,8 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages publishes this project beneath /jc-lounge/ rather than at a domain root.
+  base: process.env.GITHUB_ACTIONS === "true" ? "/jc-lounge/" : "/",
   plugins: [
     devServer({ entry: "api/boot.ts", exclude: [/^\/(?!api\/).*$/] }),
     inspectAttr(), react()],

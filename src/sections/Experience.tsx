@@ -37,7 +37,7 @@ export default function Experience() {
           className="hairline-frame mt-14 overflow-hidden rounded-lg"
         >
           <img
-            src="/images/interior.webp"
+            src={`${import.meta.env.BASE_URL}images/interior.webp`}
             alt="A wall of glowing screens above the backlit bar at a sports lounge"
             className="aspect-[16/9] w-full object-cover"
             loading="lazy"

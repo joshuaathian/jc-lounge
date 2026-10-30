@@ -36,7 +36,7 @@ export default function Hero() {
     <section id="top" className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden" aria-label="Welcome">
       <div ref={imgWrapRef} className="absolute inset-0 -bottom-40" aria-hidden="true">
         <img
-          src="/images/hero.webp"
+          src={`${import.meta.env.BASE_URL}images/hero.webp`}
           alt=""
           className="h-full w-full object-cover"
           fetchPriority="high"

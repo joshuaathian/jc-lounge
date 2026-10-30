@@ -7,7 +7,7 @@ type BrandLogoProps = {
 export default function BrandLogo({ className = "", priority = false }: BrandLogoProps) {
   return (
     <img
-      src="/images/jc-lounge-gold-official.png"
+      src={`${import.meta.env.BASE_URL}images/jc-lounge-gold-official.png`}
       alt="JC Lounge"
       width={1208}
       height={1302}
