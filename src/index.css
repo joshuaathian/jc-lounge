@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3.5%;
+    --foreground: 40 30% 97%;
+    --card: 30 14% 8%;
+    --card-foreground: 40 30% 97%;
+    --popover: 30 14% 8%;
+    --popover-foreground: 40 30% 97%;
+    --primary: 43 51% 54%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 30 14% 12%;
+    --secondary-foreground: 40 30% 97%;
+    --muted: 30 10% 16%;
+    --muted-foreground: 36 9% 57%;
+    --accent: 43 51% 54%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 4 62% 47%;
+    --destructive-foreground: 40 30% 97%;
+    --border: 36 10% 20%;
+    --input: 36 10% 24%;
+    --ring: 43 66% 60%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 3.5%;
+    --sidebar-foreground: 40 30% 97%;
+    --sidebar-primary: 43 51% 54%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 30 14% 12%;
+    --sidebar-accent-foreground: 40 30% 97%;
+    --sidebar-border: 36 10% 20%;
+    --sidebar-ring: 43 66% 60%;
+
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-jc-ink text-jc-ivory font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background: rgba(201, 168, 76, 0.35);
+    color: #faf7f2;
+  }
+
+  :focus-visible {
+    outline: 2px solid #e8c96a;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* ---- Eyebrow kicker ---- */
+  .eyebrow {
+    @apply font-sans text-[11px] font-semibold uppercase tracking-[0.32em] text-jc-gold;
+  }
+
+  /* ---- Staggered entrance (data-animate + --stagger) ---- */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.8s var(--ease-out-expo);
+    transition-delay: calc(var(--stagger, 0) * 110ms);
+  }
+  [data-animate].in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- Letter-span hero reveal ---- */
+  .letterspan {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+  .letterspan > span {
+    display: inline-block;
+    transform: translateY(1.05em);
+    transition: transform 1s var(--ease-out-expo);
+    will-change: transform;
+  }
+  .letterspan.in > span {
+    transform: translateY(0);
+  }
+
+  /* ---- Underline link (scaleX from right to left) ---- */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: #c9a84c;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease-out-expo);
+  }
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ---- Menu dotted leaders ---- */
+  .menu-leader {
+    flex: 1 1 auto;
+    margin: 0 0.65rem;
+    border-bottom: 1px dotted rgba(156, 147, 134, 0.45);
+    transform: translateY(-0.35em);
+  }
+
+  /* ---- Menu tab crossfade ---- */
+  .menu-panel {
+    animation: menuIn 0.45s var(--ease-out-expo);
+  }
+  @keyframes menuIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ---- Lightbox ---- */
+  .lightbox-enter {
+    animation: lightboxIn 0.3s ease-out;
+  }
+  @keyframes lightboxIn {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* ---- Gallery hover ---- */
+  .gallery-item img {
+    transition:
+      transform 0.7s var(--ease-out-expo),
+      filter 0.5s ease-out;
+  }
+  .gallery-item:hover img,
+  .gallery-item:focus-visible img {
+    transform: scale(1.045);
+    filter: brightness(1.12);
+  }
+
+  /* ---- Gold hairline frame ---- */
+  .hairline-frame {
+    position: relative;
+  }
+  .hairline-frame::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-animate],
+  .letterspan > span {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .menu-panel,
+  .lightbox-enter {
+    animation: none !important;
+  }
+  .gallery-item img {
+    transition: none !important;
+  }
+}
